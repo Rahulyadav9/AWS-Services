@@ -1,0 +1,6 @@
+| Service             | Description                             |
+| ------------------- | --------------------------------------- |
+| **CloudWatch**      | Monitor logs, metrics, alarms           |
+| **CloudTrail**      | Track user activity/API calls           |
+| **Trusted Advisor** | Best practice suggestions               |
+| **Config**          | Resource configuration history tracking |
