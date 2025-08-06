@@ -1,0 +1,6 @@
+| Service          | Description            |
+| ---------------- | ---------------------- |
+| **CodeCommit**   | Git repositories       |
+| **CodeBuild**    | Build & test code      |
+| **CodeDeploy**   | Automate deployments   |
+| **CodePipeline** | CI/CD pipeline service |
