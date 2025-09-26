@@ -139,3 +139,157 @@
 * Game servers.
 * CI/CD build servers.
 
+
+
+Got it 👍
+Here’s a **comprehensive EC2 interview Q&A guide** (from basics → advanced → scenario-based).
+
+---
+
+## 🚀 **AWS EC2 Interview Q&A**
+
+### **1. Basics**
+
+**Q:** What is Amazon EC2?
+**A:** EC2 (Elastic Compute Cloud) is a web service that provides resizable compute capacity (virtual servers) in the cloud. You can run applications without investing in physical servers.
+
+**Q:** What are the different types of EC2 instances?
+**A:**
+
+* **General Purpose** – Balanced (e.g., T, M family).
+* **Compute Optimized** – CPU-heavy (C family).
+* **Memory Optimized** – RAM-heavy (R, X family).
+* **Storage Optimized** – High IOPS (I, D family).
+* **Accelerated Computing** – GPU/FPGA (P, G family).
+
+**Q:** What are EC2 pricing models?
+**A:**
+
+1. **On-Demand** – Pay per second/hour, flexible.
+2. **Reserved Instances** – 1 or 3-year commitment, cheaper.
+3. **Spot Instances** – Bid for unused capacity, cheapest but can be interrupted.
+4. **Savings Plans** – Flexible usage commitment.
+5. **Dedicated Hosts/Instances** – Physical servers for compliance.
+
+---
+
+### **2. Storage**
+
+**Q:** What’s the difference between EBS and Instance Store?
+**A:**
+
+* **EBS (Elastic Block Store):** Persistent, survives stop/start.
+* **Instance Store:** Temporary, data lost if instance stops/terminates.
+
+**Q:** Types of EBS volumes?
+**A:**
+
+* gp3/gp2 (General Purpose SSD)
+* io1/io2 (Provisioned IOPS SSD)
+* st1 (Throughput Optimized HDD)
+* sc1 (Cold HDD)
+
+---
+
+### **3. Networking**
+
+**Q:** What is an Elastic IP in EC2?
+**A:** A static IPv4 address that you can associate with an instance. Unlike public IPs, Elastic IPs persist across stop/start.
+
+**Q:** What’s the difference between Security Groups and NACLs?
+**A:**
+
+* **Security Groups:** Instance-level, stateful, allow rules only.
+* **NACLs:** Subnet-level, stateless, allow + deny rules.
+
+**Q:** How do you connect to an EC2 instance?
+**A:**
+
+* Linux: SSH using `.pem` key pair.
+* Windows: RDP using `.pem` + Administrator password.
+
+---
+
+### **4. Scaling & Load Balancing**
+
+**Q:** What is Auto Scaling in EC2?
+**A:** Automatically adjusts the number of EC2 instances based on demand. Works with CloudWatch alarms.
+
+**Q:** How do Load Balancers work with EC2?
+**A:** Elastic Load Balancer (ELB) distributes incoming traffic across multiple EC2 instances for high availability.
+
+---
+
+### **5. Security**
+
+**Q:** How do you secure sensitive credentials in EC2?
+**A:**
+
+* Don’t hardcode credentials.
+* Use IAM roles for EC2.
+* Use AWS Systems Manager Parameter Store or Secrets Manager.
+
+**Q:** What happens if you lose the `.pem` key for an EC2 instance?
+**A:**
+
+* Stop the instance, detach its root volume.
+* Attach the volume to another instance.
+* Add a new public key to the `~/.ssh/authorized_keys` file.
+* Reattach and start the instance.
+
+---
+
+### **6. Monitoring & Troubleshooting**
+
+**Q:** How do you monitor an EC2 instance?
+**A:** Use **CloudWatch Metrics** (CPU, Network, Disk), **CloudWatch Logs**, and enable **Detailed Monitoring**.
+
+**Q:** An EC2 instance is unreachable (can’t SSH). What steps would you take?
+**A:**
+
+1. Check Security Group (port 22 open).
+2. Check NACL rules.
+3. Verify correct key pair.
+4. Ensure the instance has a public IP / Elastic IP.
+5. Check if the OS-level firewall is blocking access.
+
+---
+
+### **7. Advanced / Scenario-Based**
+
+**Q:** How do you migrate an on-premise application to EC2?
+**A:**
+
+* Use AWS **Server Migration Service (SMS)** or **Application Migration Service (MGN)**.
+* Create AMIs and launch equivalent EC2 instances.
+
+**Q:** You need **zero downtime deployment** on EC2, how would you achieve it?
+**A:**
+
+* Use **Auto Scaling Group** + **Load Balancer**.
+* Deploy new version to new instances → switch traffic gradually.
+* Or use **Blue/Green Deployment** with Route 53.
+
+**Q:** Your EC2 bill is too high. What steps would you take to optimize cost?
+**A:**
+
+* Use **Reserved Instances** or **Savings Plans**.
+* Use **Spot Instances** for non-critical workloads.
+* Right-size instances (monitor CPU/memory).
+* Turn off unused instances.
+
+**Q:** How do you achieve high availability with EC2?
+**A:**
+
+* Launch instances across **multiple AZs**.
+* Place them behind an **ELB**.
+* Enable **Auto Scaling**.
+
+**Q:** How do you back up data from EC2?
+**A:**
+
+* Create **EBS snapshots** (incremental backups).
+* Use **Amazon Machine Image (AMI)** for whole-instance backup.
+* Sync files to **S3**.
+
+---
